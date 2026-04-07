@@ -6,6 +6,7 @@ import os
 from dotenv import load_dotenv
 
 
+print("ПРИВЕТ, Я ЗАПУСТИЛСЯ!")
 rules = 'Пока что у нас анархия...'
 
 
