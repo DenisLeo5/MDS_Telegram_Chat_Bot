@@ -4,6 +4,7 @@ from datetime import timedelta
 from db_interact import *
 import os
 from dotenv import load_dotenv
+from keep_alive import keep_alive
 
 
 print("ПРИВЕТ, Я ЗАПУСТИЛСЯ!")
@@ -223,6 +224,7 @@ async def check_message(update, context):
 
 if __name__ == '__main__':
     load_dotenv()
+    keep_alive()
     TOKEN = os.getenv("BOT_TOKEN")
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(ChatMemberHandler(delete_user_from_chat, ChatMemberHandler.CHAT_MEMBER))
