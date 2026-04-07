@@ -2,6 +2,8 @@ from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove, ChatPermi
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters, ConversationHandler, ChatMemberHandler
 from datetime import timedelta
 from db_interact import *
+import os
+from dotenv import load_dotenv
 
 
 rules = 'Пока что у нас анархия...'
@@ -219,7 +221,9 @@ async def check_message(update, context):
 
 
 if __name__ == '__main__':
-    app = ApplicationBuilder().token("8660537777:AAESdCDIXgL2z3B2un6hBJv3AE4-cDoJkFo").build()
+    load_dotenv()
+    TOKEN = os.getenv("BOT_TOKEN")
+    app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(ChatMemberHandler(delete_user_from_chat, ChatMemberHandler.CHAT_MEMBER))
     app.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, greet_new_member))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), check_message))
